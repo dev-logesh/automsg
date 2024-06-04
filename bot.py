@@ -342,6 +342,7 @@ async def start_message():
                         if j[0] == i[0]:
                             try:
                                 clients.remove(i)
+                                save_clients()
                             except ValueError as e:
                                 pass
                     continue
