@@ -3,3 +3,4 @@ pyrogram
 tgcrypto
 flask
 gunicorn
+pymongo
