@@ -19,7 +19,7 @@ import random
 import threading
 import asyncio
 import time
-from .config import *
+from config import *
 
 client = MongoClient('mongodb+srv://logi:logi@cluster0.kistqqd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 db = client['clients']  # Replace with your database name
